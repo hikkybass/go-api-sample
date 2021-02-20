@@ -2,7 +2,7 @@
 
 ## ローカルでの起動方法
 ```
-go run *.go
+go run cmd/main.go
 ```
 
 ## リクエスト方法
