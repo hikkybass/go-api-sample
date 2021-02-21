@@ -3,14 +3,14 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/go-api-sample/infra"
-	"github.com/go-api-sample/usecase"
 	"github.com/joho/godotenv"
+	"github.com/yuki9541134/go-api-sample/infra"
+	"github.com/yuki9541134/go-api-sample/usecase"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/go-api-sample/handler"
+	"github.com/yuki9541134/go-api-sample/handler"
 
 	_ "github.com/go-sql-driver/mysql"
 )

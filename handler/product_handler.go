@@ -2,7 +2,7 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/go-api-sample/usecase"
+	"github.com/yuki9541134/go-api-sample/usecase"
 	"io"
 	"net/http"
 )

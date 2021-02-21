@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"github.com/go-api-sample/domain/model"
-	"github.com/go-api-sample/domain/repository"
+	"github.com/yuki9541134/go-api-sample/domain/model"
+	"github.com/yuki9541134/go-api-sample/domain/repository"
 )
 
 type ProductUseCase interface {
