@@ -6,7 +6,7 @@ import (
 )
 
 type ProductUseCase interface {
-	GetAllProducts() ([]model.Product, error)
+	GetAllProducts() ([]*model.Product, error)
 }
 
 type productUseCase struct {
@@ -17,6 +17,6 @@ func NewProductUseCase(pr repository.ProductRepository) ProductUseCase {
 	return productUseCase{pr}
 }
 
-func (pu productUseCase) GetAllProducts() ([]model.Product, error) {
+func (pu productUseCase) GetAllProducts() ([]*model.Product, error) {
 	return pu.productRepository.GetAll()
 }

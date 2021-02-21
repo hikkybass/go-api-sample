@@ -5,5 +5,5 @@ import (
 )
 
 type ProductRepository interface {
-	GetAll() ([]model.Product, error)
+	GetAll() ([]*model.Product, error)
 }
