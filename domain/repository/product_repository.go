@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/go-api-sample/domain/model"
+	"github.com/yuki9541134/go-api-sample/domain/model"
 )
 
 type ProductRepository interface {
-	GetAll() ([]model.Product, error)
+	GetAll() ([]*model.Product, error)
 }

@@ -1,12 +1,12 @@
 package usecase
 
 import (
-	"github.com/go-api-sample/domain/model"
-	"github.com/go-api-sample/domain/repository"
+	"github.com/yuki9541134/go-api-sample/domain/model"
+	"github.com/yuki9541134/go-api-sample/domain/repository"
 )
 
 type ProductUseCase interface {
-	GetAllProducts() ([]model.Product, error)
+	GetAllProducts() ([]*model.Product, error)
 }
 
 type productUseCase struct {
@@ -17,6 +17,6 @@ func NewProductUseCase(pr repository.ProductRepository) ProductUseCase {
 	return productUseCase{pr}
 }
 
-func (pu productUseCase) GetAllProducts() ([]model.Product, error) {
+func (pu productUseCase) GetAllProducts() ([]*model.Product, error) {
 	return pu.productRepository.GetAll()
 }

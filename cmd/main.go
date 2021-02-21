@@ -1,40 +1,27 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	"github.com/go-api-sample/infra"
-	"github.com/go-api-sample/usecase"
 	"github.com/joho/godotenv"
+	"github.com/yuki9541134/go-api-sample/handler"
+	"github.com/yuki9541134/go-api-sample/infra"
+	"github.com/yuki9541134/go-api-sample/usecase"
 	"log"
 	"net/http"
-	"os"
-
-	"github.com/go-api-sample/handler"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
+	// 環境変数の読み込み
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	dataSourceName := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASS"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_NAME"),
-	)
+	// DB接続
+	db := infra.ConnectDB()
 
-	db, err := sql.Open("mysql", dataSourceName)
-	if err != nil {
-		panic(err)
-	}
-
+	// 依存性の注入
 	productRepository := infra.NewProductRepository(db)
 	productUseCase := usecase.NewProductUseCase(productRepository)
 	productHandler := handler.NewProductHandler(productUseCase)
