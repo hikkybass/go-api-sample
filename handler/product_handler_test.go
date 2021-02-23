@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/yuki9541134/go-api-sample/domain/model"
 	"io/ioutil"
 	"net/http/httptest"
@@ -32,9 +32,19 @@ func TestHandleGetProducts(t *testing.T) {
 	resp := w.Result()
 
 	if resp.StatusCode != 200 {
-		panic(resp.StatusCode)
+		t.Fatalf(`resp.StatusCode = %d, want 200`, resp.StatusCode)
 	}
-	fmt.Println(resp.Header.Get("Content-Type"))
 
-	fmt.Println(ioutil.ReadAll(resp.Body))
+	respBodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+
+	var products []model.Product
+	if err := json.Unmarshal(respBodyBytes, &products); err != nil {
+		panic(err)
+	}
+	if products[0].ID != 1 {
+		t.Fatalf(`products[0].ID = %d, want 1`, products[0].ID)
+	}
 }
